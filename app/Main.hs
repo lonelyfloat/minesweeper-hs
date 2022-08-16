@@ -145,3 +145,4 @@ main = do
     putStrLn "Game Over"
     printf "You survived %d turns\n" (turns f)
     draw revealed
+-- test comment

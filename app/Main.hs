@@ -52,10 +52,9 @@ inBounds board (x,y) (kx,ky) = inBounds' (length (board V.! y), length board) (x
 
 getNeighborData :: Board -> (Int, Int) -> (Cell -> Bool) -> Int
 getNeighborData objs (x,y) f = length . filter f
-    . map (\t -> ind (x + fst t, y + snd t))
+    . map (\ (tx, ty) -> objs V.! (y + ty) V.! (x+tx) )
     . filter (inBounds objs (x,y))
     $ concat [[(xi,yi) | xi <- [-1..1]] | yi <- [-1..1]]
-  where ind (x,y) = objs V.! y V.! x
 
 genCanvas :: Board -> V.Vector (V.Vector Char)
 genCanvas board = V.map (V.map (getTypeChar board)) board
